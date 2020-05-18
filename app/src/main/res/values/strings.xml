@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">assessmentTwo</string>
+    <string name="app_name">assignmentTwo</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
