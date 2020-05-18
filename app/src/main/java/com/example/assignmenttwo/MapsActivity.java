@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -39,7 +40,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
 
 
     }
@@ -83,9 +83,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
+    //is called when the user clicks on the location dot.
     public void onMyLocationClick(@NonNull Location location)
     {
         TextView loc = findViewById(R.id.textView);
         loc.setText(String.valueOf(location.getLatitude()));
+        Toast.makeText(this, String.valueOf(location.getLatitude()), Toast.LENGTH_LONG).show();
     }
 }
