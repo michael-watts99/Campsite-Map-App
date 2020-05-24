@@ -7,21 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a60f9e10-2e64-46d6-a98d-aef9d9bf5fea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-hdpi/Group 191.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-hdpi/Icon - Menu - Outlined.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-ldpi/Group 191.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-ldpi/Icon - Menu - Outlined.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-mdpi/Group 191.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-mdpi/Icon - Menu - Outlined.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-xhdpi/Group 191.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-xhdpi/Icon - Menu - Outlined.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-xxhdpi/Group 191.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-xxhdpi/Icon - Menu - Outlined.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-xxxhdpi/Group 191.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-xxxhdpi/Icon - Menu - Outlined.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/location.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/menu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/menu_fragment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -32,12 +17,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assessment Two Designs.xd" beforeDir="false" afterPath="$PROJECT_DIR$/Assessment Two Designs.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/debug/res/values/google_maps_api.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/debug/res/values/google_maps_api.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/MapsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -168,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589811794207</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Commit for any changes since last commit for work on 23/05/20&#10;- Added functionality for location tracking&#10;- Added myLocation button&#10;- Added image buttons for main toolbar &#10;- Added menu image button&#10;-">
+      <created>1590240837365</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1590240837365</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -187,6 +179,39 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Commit for any changes since last commit for work on 18/05/20" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit for any changes since last commit for work on 18/05/20" />
+    <MESSAGE value="Commit for any changes since last commit for work on 23/05/20&#10;- Added functionality for location tracking&#10;- Added myLocation button&#10;- Added image buttons for main toolbar &#10;- Added menu image button&#10;-" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit for any changes since last commit for work on 23/05/20&#10;- Added functionality for location tracking&#10;- Added myLocation button&#10;- Added image buttons for main toolbar &#10;- Added menu image button&#10;-" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/MapsActivity.java</url>
+          <line>240</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/MapsActivity.java</url>
+          <line>130</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/MapsActivity.java</url>
+          <line>337</line>
+          <properties class="com.example.assignmenttwo.MapsActivity" method="isLocationOn" />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="app">
+        <watch expression="currentLoc" language="JAVA" />
+        <watch expression="location" language="JAVA" />
+        <watch expression="Location" language="JAVA" />
+        <watch expression="current" language="JAVA" />
+        <watch expression="locationEnabled" language="JAVA" />
+        <watch expression="locationOn" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
