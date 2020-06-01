@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="names">
+        <item>
+            First Marker
+        </item>
+
+        <item>
+            Aires Crossing Campsite
+        </item>
+
+        <item>
+            Big Hill Campground
+        </item>
+
+        <item>
+            Hammond Road Campground
+        </item>
+
+        <item>
+            Sharps Camping Area
+        </item>
+    </string-array>
+
+    <string-array name="latitude">
+        <item name = "sydney">
+            -34
+        </item>
+
+        <item name = "Aires Crossing">
+            -38.7026611
+        </item>
+
+        <item name = "Big Hill">
+            -38.4753234
+        </item>
+        <item name = "Hammond Road">
+            -38.3988785
+        </item>
+
+        <item name = "Sharps Camping Area">
+            -38.5515204
+        </item>
+
+    </string-array>
+
+    <string-array name="longitude">
+        <item name = "sydney">
+            151
+        </item>
+
+        <item name = "Aires Crossing">
+            143.4779851
+        </item>
+
+        <item name = "Big Hill">
+            143.9323566
+        </item>
+
+        <item name = "Hammond Road">
+            144.0228735
+        </item>
+
+        <item name = "Sharps Camping Area">
+            143.9320807
+        </item>
+
+
+    </string-array>
+</resources>

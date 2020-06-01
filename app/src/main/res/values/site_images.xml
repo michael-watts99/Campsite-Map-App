@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="images">
+        <item>
+            @drawable/campsite
+        </item>
+        <item>
+            @drawable/box
+        </item>
+        <item>
+            @drawable/location
+        </item>
+        <item>
+            @drawable/funnel
+        </item>
+        <item>
+            @drawable/menu
+        </item>
+    </integer-array>
+</resources>

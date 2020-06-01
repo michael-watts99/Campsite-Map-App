@@ -7,6 +7,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -17,6 +19,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -28,6 +32,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +59,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -61,6 +67,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.lang.reflect.Array;
 import java.util.Map;
 
 import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
@@ -76,22 +83,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationCallback locCallback;
     private LocationRequest locationRequest;
     private boolean locationOn;
-    protected static final int REQUEST_CHECK_SETTINGS = 0x1;
-    private GoogleApiClient mGoogleApiClient;
 
-    //TODO GET THE APP TO CHECK IF LOCATION SERVICES IS ENABLED WHEN THE LOCATION BUTTON IS PRESSED. IF THEY ARE ENABLED THEN GET LOCATION. NEED TO CHECK AND THEN CALL THE METHOD THAT LOADS THE LOCATION, SIMILAR TO HOW IT CHECKS FOR PERMISSIONS
+    String [] names;
+    String[] latitude;
+    String[] longitude;
+    TypedArray images;
+    //Fragment variables
+    public View siteFrag;
+    public FragmentManager fragManager = getSupportFragmentManager();
+
+    Marker mMarker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        Resources res = getResources();
+        names = res.getStringArray(R.array.names);
+        latitude =  res.getStringArray(R.array.latitude);
+        longitude = res.getStringArray(R.array.longitude);
+        images = res.obtainTypedArray(R.array.images);
+
+        siteFrag = findViewById(R.id.siteFrag);
+
+        siteFrag.setVisibility(View.INVISIBLE);
+
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         locationClient = LocationServices.getFusedLocationProviderClient(this);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+        //Setting the location services client
+//        locationClient = LocationServices.getFusedLocationProviderClient(this);
+        //Checking if the location services are enabled
         isLocationOn();
-        if (locationOn) {
+        //If the location services are on the app will
+        if (locationOn && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             //Getting location client
 
 
@@ -104,18 +134,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-        //TODO REMOVE THIS BUTTON WHEN NO LONGER NEEDED.
-        Button locationButton = findViewById(R.id.button);
-        locationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    TextView text = findViewById(R.id.textView);
-                    text.setText(String.valueOf(currentLoc.getLatitude()));
-                }
 
-            }
-        });
 
 
     }
@@ -142,7 +161,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //Set zoom to 10
         mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
 
-
+        addMarkers();
         mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
         //isLocationOn();
         //Checking if location access has been granted. If it has then the location enabled option is set
@@ -165,6 +184,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
             }
+
+        }
+        else if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || !locationOn)
+        {
+            if(mMap != null)
+            {
+                LatLng sydney = new LatLng(33.8688,151.2093);
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            }
+
 
         }
 
@@ -301,13 +330,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onResume();
 
         isLocationOn();
-        if(locationOn && mMap != null && ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        if(locationOn && mMap != null && ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && siteFrag.getVisibility() != View.VISIBLE)
         {
             locationClient = LocationServices.getFusedLocationProviderClient(this);
             //Setting the location enabled setting to be true. This shows the default location button and the location marker
             mMap.setMyLocationEnabled(true);
             //hiding the default location button to ensure the custom button is being used.
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
+
 
 
             locationRequest();
@@ -327,6 +357,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         else if(!locationOn)
         {
             Toast.makeText(this, "Without access to your location you will not be able to see where you are on the map or get directions.", Toast.LENGTH_LONG).show();
+        }
+        else if(siteFrag.getVisibility() == View.VISIBLE)
+        {
+            return;
         }
 
     }
@@ -352,6 +386,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     //hiding the default location button to ensure the custom button is being used.
                     mMap.getUiSettings().setMyLocationButtonEnabled(false);
                     //Getting the last known location
+                    getLocationCallback();
                     getLastLocation();
                     //Starting location updates for location tracking
                     locationUpdates();
@@ -376,6 +411,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             else
             {
                 Toast.makeText(this, "Without access to your location you will not be able to see where you are on the map or get directions.", Toast.LENGTH_LONG).show();
+                LatLng sydney = new LatLng(-34, 151);
+                //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+               // mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
             }
         }
     }
@@ -404,30 +443,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(manager.isProviderEnabled(LocationManager.GPS_PROVIDER))
         {
             locationOn = true;
-            //Gets the last known location and sets it to the global location variable.
-//            locationUpdates();
-//            getLastLocation();
-
-
-            //TODO Find out how to make the loading of the map smoother after giving permissions during runtime
-
-
-//            //Gets the latitude and longitude of the current location and then moves the camera there by panning over the map (To give it a smooth look)
-//            //Sets the map zoom to 15 so the location area is visible at a local level.
-//            LatLng current = new LatLng(currentLoc.getLatitude(), currentLoc.getLongitude());
-//            CameraPosition currentLocationCameraPosition = new CameraPosition.Builder().target(current).zoom(15).build();
-//            CameraUpdate currentLocationUpdate = CameraUpdateFactory.newCameraPosition(currentLocationCameraPosition);
-//            mMap.animateCamera(currentLocationUpdate);
-        }
-        else
-        {
-//            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-//            MapsActivity.this.startActivity(intent);
-//
-//            getLastLocation();
-
 
         }
+
     }
     //Method to turn location on if the location is not already on
     public void turnLocationOn()
@@ -454,5 +472,55 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    public void addMarkers()
+    {
+        for(int i = 0; i < names.length; i++ )
+        {
+            LatLng location = new LatLng(Double.parseDouble(latitude[i]), Double.parseDouble(longitude[i]));
+            mMap.addMarker(new MarkerOptions().position(location).title(names[i]));
+            final int num = i;
+            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+                    //TODO: CREATE A LOOP TO SET THE DATA || COULD USE A SWITCH CASE INSTEAD
+
+
+//                    if(marker.getTitle().equals(names[0]))
+//                    {
+//                        Toast.makeText(MapsActivity.this, "Sydney", Toast.LENGTH_LONG).show();
+//
+//
+//                    }
+//
+                    if(marker.getTitle().equals(names[0]))
+                    {
+
+                        Toast.makeText(MapsActivity.this, "Otways", Toast.LENGTH_LONG).show();
+                        siteFrag.setVisibility(View.VISIBLE);
+
+                        ImageView image = siteFrag.findViewById(R.id.siteImage);
+                        image.setImageResource(images.getResourceId(0, -1));
+
+
+
+
+                    }
+
+
+
+
+
+
+                    return false;
+                }
+            });
+        }
+
+    }
+    @Override
+    public void onBackPressed()
+    {
+        siteFrag.setVisibility(View.INVISIBLE);
+    }
 
 }
