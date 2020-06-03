@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">assignmentTwo</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="toilet">Toilet</string>
+    <string name="carpark">CarPark</string>
 </resources>

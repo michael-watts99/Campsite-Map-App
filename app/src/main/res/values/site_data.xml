@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="images">
+        <item>
+            @drawable/campsite
+        </item>
+        <item>
+            @drawable/big_hill
+        </item>
+<!--        TODO COMPLETE THE DATABASE FOR THESE CAMPSITES THEN MOVE TO DIRECTIONS. -->
+        <item>
+            @drawable/location
+        </item>
+        <item>
+            @drawable/funnel
+        </item>
+        <item>
+            @drawable/menu
+        </item>
+    </array>
+
+    <string-array name="information">
+        <item>
+            This campsite is located in the Great Otway national park. It is a short walk away from a flowing river and within driving distance of many waterfalls.
+        </item>
+        <item>
+            This campsite is located near the town of Lorne. It is a free campsite with no running water. There are 12 campsites allocated on a first in best dressed system. The campsite is open from the 1st of November to the 30th of May.
+        </item>
+    </string-array>
+
+    <string-array name="facilities">
+        <item>
+            -Toilet\n-Carpark
+
+
+        </item>
+        <item>
+            -Toilet\n-Carpark\n-Shared Fireplace
+        </item>
+
+
+
+    </string-array>
+    <string-array name="accessibility">
+        <item>
+            -Car\n-Off Road Wheelchair\n-Small camper/Caravan\n-4WD\n-Tent or vehicle camping
+        </item>
+        <item>
+            -Car\n-All Terrain Wheelchair\n-Camper vans/Caravans\n-4WD\n-Tent or vehicle camping
+        </item>
+    </string-array>
+    <string-array name="restrictions">
+        <item>
+            -No pets\n-No generators\n-No firearms\n-No fires
+        </item>
+        <item>
+            -No pets\n-No generators\n-No firearms\n-Fires only in supplied fireplaces\n-Seasonally closed
+        </item>
+    </string-array>
+</resources>

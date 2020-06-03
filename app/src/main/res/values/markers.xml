@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="names">
-        <item>
-            First Marker
-        </item>
+
 
         <item>
             Aires Crossing Campsite
@@ -23,9 +21,7 @@
     </string-array>
 
     <string-array name="latitude">
-        <item name = "sydney">
-            -34
-        </item>
+
 
         <item name = "Aires Crossing">
             -38.7026611
@@ -45,9 +41,7 @@
     </string-array>
 
     <string-array name="longitude">
-        <item name = "sydney">
-            151
-        </item>
+
 
         <item name = "Aires Crossing">
             143.4779851

@@ -1,25 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/box"
+    android:isScrollContainer="true"
+    android:overScrollMode="never">
 
-    <ImageView
-        android:id="@+id/imageView4"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/box"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/siteImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/campsiteTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="176dp"
+                android:layout_marginEnd="176dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/latitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="51dp"
+                android:layout_marginTop="52dp"
+                android:layout_marginEnd="33dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/siteImage"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/longitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="51dp"
+                android:layout_marginEnd="33dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/siteImage"
+                app:layout_constraintTop_toBottomOf="@+id/latitude" />
+
+            <View
+                android:id="@+id/facilitiesView"
+                android:layout_width="340dp"
+                android:layout_height="116dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="36dp"
+                android:background="@drawable/background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionView" />
+
+            <TextView
+                android:id="@+id/facilities"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Facilities"
+                app:layout_constraintEnd_toEndOf="@+id/facilitiesView"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="@+id/facilitiesView"
+                app:layout_constraintTop_toTopOf="@+id/facilitiesView" />
+
+            <View
+                android:id="@+id/accessibilityView"
+                android:layout_width="337dp"
+                android:layout_height="128dp"
+                android:layout_marginStart="37dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="37dp"
+                android:background="@drawable/background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/facilitiesView" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Accessibility"
+                app:layout_constraintEnd_toEndOf="@+id/accessibilityView"
+                app:layout_constraintStart_toStartOf="@+id/accessibilityView"
+                app:layout_constraintTop_toTopOf="@+id/accessibilityView" />
+
+            <TextView
+                android:id="@+id/accessibility"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@+id/accessibilityView"
+                app:layout_constraintStart_toStartOf="@+id/accessibilityView"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <ImageView
+                android:id="@+id/siteImage"
+                android:layout_width="126dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="143dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/campsiteTitle" />
+
+            <View
+                android:id="@+id/descriptionView"
+                android:layout_width="340dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="33dp"
+                android:background="@drawable/background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/siteImage" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                app:layout_constraintEnd_toEndOf="@+id/descriptionView"
+                app:layout_constraintStart_toStartOf="@+id/descriptionView"
+                app:layout_constraintTop_toTopOf="@+id/descriptionView" />
+
+            <TextView
+                android:id="@+id/siteDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="319dp"
+                android:paddingLeft="5dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="@+id/descriptionView"
+                app:layout_constraintStart_toStartOf="@+id/descriptionView"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <TextView
+                android:id="@+id/faciltiesInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@+id/facilitiesView"
+                app:layout_constraintStart_toStartOf="@+id/facilitiesView"
+                app:layout_constraintTop_toBottomOf="@+id/facilities" />
+
+            <View
+                android:id="@+id/restrictionsView"
+                android:layout_width="340dp"
+                android:layout_height="113dp"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="33dp"
+                android:background="@drawable/background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/accessibilityView" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Restrictions"
+                app:layout_constraintEnd_toEndOf="@+id/restrictionsView"
+                app:layout_constraintStart_toStartOf="@+id/restrictionsView"
+                app:layout_constraintTop_toTopOf="@+id/restrictionsView" />
+
+            <TextView
+                android:id="@+id/restrictionsInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="@+id/restrictionsView"
+                app:layout_constraintStart_toStartOf="@+id/restrictionsView"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -111,11 +111,12 @@
         <fragment
             android:id="@+id/siteFrag"
             android:name="com.example.assignmenttwo.siteFragment"
-            android:layout_width="361dp"
-            android:layout_height="606dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="60dp"
-            map:layout_constraintStart_toStartOf="parent"
+            android:layout_width="379dp"
+            android:layout_height="655dp"
+            android:layout_marginTop="36dp"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintHorizontal_bias="0.492"
+            map:layout_constraintStart_toStartOf="@+id/map"
             map:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

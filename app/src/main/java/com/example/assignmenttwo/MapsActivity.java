@@ -1,76 +1,61 @@
 package com.example.assignmenttwo;
 
+import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
-import android.location.LocationProvider;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
+import android.text.Html;
 import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApi;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.location.LocationSettingsStates;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
-import java.util.Map;
-
-import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
+import java.lang.reflect.Type;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 //Using implementation "com.google.android.gms:play-services-location:17.0.0" in build.gradle file
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
@@ -87,12 +72,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     String [] names;
     String[] latitude;
     String[] longitude;
+
     TypedArray images;
+    String[] siteInformation;
+    String[] siteFacilities;
+    String[] siteAccessibility;
+    String[] siteRestrictions;
     //Fragment variables
     public View siteFrag;
+
     public FragmentManager fragManager = getSupportFragmentManager();
 
-    Marker mMarker;
+    //listarrays
+    public ArrayList<String> namesList;
+    ArrayList<String> latitudeList;
+    ArrayList<String> longitudeList;
+    ArrayList<TypedArray> imagesList;
+    ArrayList<String> siteInformationList;
+    ArrayList<String> siteFacilitiesList;
+    ArrayList<String> siteAccessibilityList;
+    ArrayList<String> siteRestrictionsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,10 +103,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         longitude = res.getStringArray(R.array.longitude);
         images = res.obtainTypedArray(R.array.images);
 
+        siteInformation = res.getStringArray(R.array.information);
+        siteFacilities = res.getStringArray(R.array.facilities);
+        siteAccessibility = res.getStringArray(R.array.accessibility);
+        siteRestrictions = res.getStringArray(R.array.restrictions);
+
+        //Setting the fragment to a variable
         siteFrag = findViewById(R.id.siteFrag);
+
 
         siteFrag.setVisibility(View.INVISIBLE);
 
+
+        namesList = new ArrayList<>();
+        namesList.addAll(Arrays.asList(names));
+
+        latitudeList = new ArrayList<>();
+        latitudeList.addAll(Arrays.asList(latitude));
+
+        longitudeList = new ArrayList<>();
+        longitudeList.addAll(Arrays.asList(longitude));
+
+        imagesList = new ArrayList<>();
+        for(int i = 0; i <images.length(); i++)
+        {
+            imagesList.add(i, images);
+        }
+
+
+        siteInformationList = new ArrayList<>();
+        siteInformationList.addAll(Arrays.asList(siteInformation));
+
+        siteFacilitiesList = new ArrayList<>();
+        siteFacilitiesList.addAll(Arrays.asList(siteFacilities));
+
+        siteAccessibilityList = new ArrayList<>();
+        siteAccessibilityList.addAll(Arrays.asList(siteAccessibility));
+
+        siteRestrictionsList = new ArrayList<>();
+        siteRestrictionsList.addAll(Arrays.asList(siteRestrictions));
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -225,8 +259,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         Criteria crit = new Criteria();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
+
             // here to request the missing permissions, and then overriding
             //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
             //                                          int[] grantResults)
@@ -474,37 +507,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void addMarkers()
     {
-        for(int i = 0; i < names.length; i++ )
+        for(int i = 0; i < namesList.size(); i++ )
         {
-            LatLng location = new LatLng(Double.parseDouble(latitude[i]), Double.parseDouble(longitude[i]));
-            mMap.addMarker(new MarkerOptions().position(location).title(names[i]));
-            final int num = i;
+            LatLng location = new LatLng(Double.parseDouble(latitudeList.get(i)), Double.parseDouble(longitudeList.get(i)));
+            mMap.addMarker(new MarkerOptions().position(location).title(namesList.get(i)).icon(BitmapDescriptorFactory.fromResource(R.drawable.campsite_icon)));
+
+
             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @SuppressLint("ResourceType")
                 @Override
                 public boolean onMarkerClick(Marker marker) {
-                    //TODO: CREATE A LOOP TO SET THE DATA || COULD USE A SWITCH CASE INSTEAD
 
 
-//                    if(marker.getTitle().equals(names[0]))
-//                    {
-//                        Toast.makeText(MapsActivity.this, "Sydney", Toast.LENGTH_LONG).show();
-//
-//
-//                    }
-//
-                    if(marker.getTitle().equals(names[0]))
-                    {
+                    siteFrag.setVisibility(View.VISIBLE);
 
-                        Toast.makeText(MapsActivity.this, "Otways", Toast.LENGTH_LONG).show();
-                        siteFrag.setVisibility(View.VISIBLE);
-
-                        ImageView image = siteFrag.findViewById(R.id.siteImage);
-                        image.setImageResource(images.getResourceId(0, -1));
-
-
-
-
-                    }
+                    ImageView image = siteFrag.findViewById(R.id.siteImage);
+                    TextView siteInfo = siteFrag.findViewById(R.id.siteDescription);
+                    TextView siteTitle = siteFrag.findViewById(R.id.campsiteTitle);
+                    TextView siteLat = siteFrag.findViewById(R.id.latitude);
+                    TextView siteLong = siteFrag.findViewById(R.id.longitude);
+                    TextView facilitiesInfo = siteFrag.findViewById(R.id.faciltiesInfo);
+                    TextView accessibilityInfo = siteFrag.findViewById(R.id.accessibility);
+                    TextView restrictionsInfo = siteFrag.findViewById(R.id.restrictionsInfo);
+                    int index = namesList.indexOf(marker.getTitle());
+                    getCampsiteInfo(image, siteInfo, siteTitle, siteLat, siteLong, facilitiesInfo, accessibilityInfo, restrictionsInfo, index);
 
 
 
@@ -517,9 +543,85 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
     }
+
+    @SuppressLint("ResourceType")
+    public void getCampsiteInfo(ImageView image, TextView siteInfo, TextView siteTitle, TextView siteLat, TextView siteLong, TextView facilitiesInfo, TextView accessibilityInfo, TextView restrictionsInfo, int index)
+    {
+
+        if(imagesList.size() - 1 >= index)
+        {
+
+            image.setImageResource(imagesList.get(index).getResourceId(index, -1));
+
+
+        }
+        else
+        {
+            image.setImageResource(0);
+        }
+        if(namesList.size() - 1 >= index)
+        {
+            siteTitle.setText(namesList.get(index));
+        }
+        else
+        {
+            siteTitle.setText(null);
+        }
+        if(latitudeList.size() - 1 >= index)
+        {
+            siteLat.setText(latitudeList.get(index));
+        }
+        else
+        {
+            siteLat.setText(null);
+        }
+        if(longitudeList.size() - 1 >= index)
+        {
+            siteLong.setText(longitudeList.get(index));
+        }
+        else
+        {
+            siteLong.setText(null);
+        }
+        if(siteFacilitiesList.size() - 1 >= index)
+        {
+            facilitiesInfo.setText(siteFacilitiesList.get(index));
+        }
+        else
+        {
+            facilitiesInfo.setText(null);
+        }
+        if(siteAccessibilityList.size() - 1 >= index)
+        {
+            accessibilityInfo.setText(siteAccessibilityList.get(index));
+        }
+        else
+        {
+            accessibilityInfo.setText(null);
+        }
+        if(siteRestrictionsList.size() - 1 >= index)
+        {
+            restrictionsInfo.setText(siteRestrictionsList.get(index));
+        }
+        else
+        {
+            restrictionsInfo.setText(null);
+        }
+
+        if(siteInformationList.size() - 1 >= index)
+        {
+            siteInfo.setText(siteInformationList.get(index));
+        }
+        else
+        {
+            siteInfo.setText(null);
+        }
+
+    }
     @Override
     public void onBackPressed()
     {
+
         siteFrag.setVisibility(View.INVISIBLE);
     }
 
