@@ -11,15 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a60f9e10-2e64-46d6-a98d-aef9d9bf5fea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-hdpi/Component 2 – 10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-ldpi/Component 2 – 10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-mdpi/Component 2 – 10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-xhdpi/Component 2 – 10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-xxhdpi/Component 2 – 10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-xxxhdpi/campsiteIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/campsite_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/big_hill.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/hammond_road.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/sharps_campground.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -30,15 +23,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/MapsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/site_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/site_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/markers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/markers.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/site_images.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/site_data.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/site_data.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/site_data.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -215,8 +204,25 @@
       <option name="project" value="LOCAL" />
       <updated>1591031388572</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Commit for any changes since last commit for work on 03/06/20&#10;- Continued developing the database&#10;- Created function to fill fragment with campsite data based on which marker has been selected&#10;- Added new icon for campsite markers&#10;- Added second campsite image">
+      <created>1591208726586</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1591208726586</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -238,14 +244,15 @@
     <MESSAGE value="Commit for any changes since last commit for work on 24/05/20&#10;- Made requesting location smoother&#10;- Need to implement location settings checker" />
     <MESSAGE value="Commit for any changes since last commit for work on 01/06/20&#10;- Implemented location settings checker&#10;- Asks for permissions at startup | these can be denied. &#10;- Location fails gracefully&#10;- Now checks for location being null" />
     <MESSAGE value="Commit for any changes since last commit for work on 02/06/20&#10;- Created for loop to create markers from the database &#10;- Started XML database&#10;- Added fragment for the campsite information&#10;- Removed redundant test button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit for any changes since last commit for work on 02/06/20&#10;- Created for loop to create markers from the database &#10;- Started XML database&#10;- Added fragment for the campsite information&#10;- Removed redundant test button" />
+    <MESSAGE value="Commit for any changes since last commit for work on 03/06/20&#10;- Continued developing the database&#10;- Created function to fill fragment with campsite data based on which marker has been selected&#10;- Added new icon for campsite markers&#10;- Added second campsite image" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit for any changes since last commit for work on 03/06/20&#10;- Continued developing the database&#10;- Created function to fill fragment with campsite data based on which marker has been selected&#10;- Added new icon for campsite markers&#10;- Added second campsite image" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/MapsActivity.java</url>
-          <line>550</line>
+          <line>567</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

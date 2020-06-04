@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.media.Image;
@@ -25,12 +27,18 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.text.Html;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.GoogleApi;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.internal.GoogleApiManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -46,6 +54,9 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
@@ -56,6 +67,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+
 
 //Using implementation "com.google.android.gms:play-services-location:17.0.0" in build.gradle file
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
@@ -110,6 +122,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //Setting the fragment to a variable
         siteFrag = findViewById(R.id.siteFrag);
+
 
 
         siteFrag.setVisibility(View.INVISIBLE);
@@ -214,6 +227,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     CameraPosition currentLocationCameraPosition = new CameraPosition.Builder().target(current).zoom(15).build();
                     CameraUpdate currentLocationUpdate = CameraUpdateFactory.newCameraPosition(currentLocationCameraPosition);
                     mMap.animateCamera(currentLocationUpdate);
+
+                    directions();
                 }
 
 
@@ -529,7 +544,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     TextView facilitiesInfo = siteFrag.findViewById(R.id.faciltiesInfo);
                     TextView accessibilityInfo = siteFrag.findViewById(R.id.accessibility);
                     TextView restrictionsInfo = siteFrag.findViewById(R.id.restrictionsInfo);
+
                     int index = namesList.indexOf(marker.getTitle());
+                    //TODO REPLACE EACH INDIVIDUAL VIEW WITH A RECYCLERVIEW WITH CARDVIEW
                     getCampsiteInfo(image, siteInfo, siteTitle, siteLat, siteLong, facilitiesInfo, accessibilityInfo, restrictionsInfo, index);
 
 
@@ -624,5 +641,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         siteFrag.setVisibility(View.INVISIBLE);
     }
+
+    public void directions()
+    {
+        LatLng current = new LatLng(currentLoc.getLatitude(), currentLoc.getLongitude());
+        LatLng destination = new LatLng(Double.parseDouble(latitudeList.get(0)), Double.parseDouble(longitudeList.get(0)));
+
+//        Polyline dirLine = new Polyline();
+        mMap.addPolyline(new PolylineOptions().add(current, destination));
+
+
+
+    }
+
+
 
 }

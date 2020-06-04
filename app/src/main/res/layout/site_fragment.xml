@@ -57,7 +57,7 @@
             <View
                 android:id="@+id/facilitiesView"
                 android:layout_width="340dp"
-                android:layout_height="116dp"
+                android:layout_height="160dp"
                 android:layout_marginStart="35dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="36dp"
@@ -78,8 +78,8 @@
 
             <View
                 android:id="@+id/accessibilityView"
-                android:layout_width="337dp"
-                android:layout_height="128dp"
+                android:layout_width="340dp"
+                android:layout_height="160dp"
                 android:layout_marginStart="37dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="37dp"
@@ -120,7 +120,7 @@
             <View
                 android:id="@+id/descriptionView"
                 android:layout_width="340dp"
-                android:layout_height="110dp"
+                android:layout_height="160dp"
                 android:layout_marginStart="38dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="33dp"
@@ -162,7 +162,7 @@
             <View
                 android:id="@+id/restrictionsView"
                 android:layout_width="340dp"
-                android:layout_height="113dp"
+                android:layout_height="160dp"
                 android:layout_marginStart="38dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="33dp"
