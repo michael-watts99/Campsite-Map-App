@@ -31,7 +31,7 @@ public class siteFragment extends Fragment {
         images = res.obtainTypedArray(R.array.images);
         names = res.getStringArray(R.array.names);
 
-        View root = inflater.inflate(R.layout.site_fragment, container, false);
+        View root1 = inflater.inflate(R.layout.site_fragment, container, false);
 
 
 
@@ -39,7 +39,7 @@ public class siteFragment extends Fragment {
 
 
 
-        return root;
+        return root1;
     }
 
 }

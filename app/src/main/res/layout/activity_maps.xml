@@ -77,13 +77,27 @@
             map:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/latView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="168dp"
-            android:layout_marginEnd="288dp"
+            android:layout_marginTop="580dp"
+            android:text="TextView"
+            android:textColor="#000000"
             map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintHorizontal_bias="0.079"
+            map:layout_constraintStart_toStartOf="parent"
             map:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/longView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="12dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toBottomOf="@+id/latView" />
 
         <ImageButton
             android:id="@+id/myLocation"
@@ -109,10 +123,20 @@
             map:layout_constraintTop_toTopOf="parent" />
 
         <fragment
+            android:id="@+id/favFrag"
+            android:name="com.example.assignmenttwo.favouritesFragment"
+            android:layout_width="373dp"
+            android:layout_height="618dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toTopOf="parent" />
+
+        <fragment
             android:id="@+id/siteFrag"
             android:name="com.example.assignmenttwo.siteFragment"
-            android:layout_width="379dp"
-            android:layout_height="655dp"
+            android:layout_width="381dp"
+            android:layout_height="615dp"
             android:layout_marginTop="36dp"
             map:layout_constraintEnd_toEndOf="parent"
             map:layout_constraintHorizontal_bias="0.492"

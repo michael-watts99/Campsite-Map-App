@@ -27,9 +27,19 @@
                 android:layout_marginStart="176dp"
                 android:layout_marginEnd="176dp"
                 android:text="TextView"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/siteImage"
+                android:layout_width="126dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="140dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/campsiteTitle" />
 
             <TextView
                 android:id="@+id/latitude"
@@ -39,8 +49,9 @@
                 android:layout_marginTop="52dp"
                 android:layout_marginEnd="33dp"
                 android:text="TextView"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/siteImage"
+                app:layout_constraintStart_toEndOf="@+id/siteImageRecycler"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -50,8 +61,9 @@
                 android:layout_marginStart="51dp"
                 android:layout_marginEnd="33dp"
                 android:text="TextView"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/siteImage"
+                app:layout_constraintStart_toEndOf="@+id/siteImageRecycler"
                 app:layout_constraintTop_toBottomOf="@+id/latitude" />
 
             <View
@@ -71,6 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Facilities"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="@+id/facilitiesView"
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="@+id/facilitiesView"
@@ -94,6 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Accessibility"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="@+id/accessibilityView"
                 app:layout_constraintStart_toStartOf="@+id/accessibilityView"
                 app:layout_constraintTop_toTopOf="@+id/accessibilityView" />
@@ -104,25 +118,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="TextView"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="@+id/accessibilityView"
                 app:layout_constraintStart_toStartOf="@+id/accessibilityView"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-            <ImageView
-                android:id="@+id/siteImage"
-                android:layout_width="126dp"
-                android:layout_height="87dp"
-                android:layout_marginStart="143dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/campsiteTitle" />
 
             <View
                 android:id="@+id/descriptionView"
                 android:layout_width="340dp"
                 android:layout_height="160dp"
                 android:layout_marginStart="38dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="33dp"
                 android:background="@drawable/background"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -134,6 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Description"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="@+id/descriptionView"
                 app:layout_constraintStart_toStartOf="@+id/descriptionView"
                 app:layout_constraintTop_toTopOf="@+id/descriptionView" />
@@ -146,6 +152,7 @@
                 android:paddingLeft="5dp"
                 android:text="TextView"
                 android:textAlignment="center"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="@+id/descriptionView"
                 app:layout_constraintStart_toStartOf="@+id/descriptionView"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -155,6 +162,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="@+id/facilitiesView"
                 app:layout_constraintStart_toStartOf="@+id/facilitiesView"
                 app:layout_constraintTop_toBottomOf="@+id/facilities" />
@@ -176,6 +184,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Restrictions"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="@+id/restrictionsView"
                 app:layout_constraintStart_toStartOf="@+id/restrictionsView"
                 app:layout_constraintTop_toTopOf="@+id/restrictionsView" />
@@ -185,9 +194,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="@+id/restrictionsView"
                 app:layout_constraintStart_toStartOf="@+id/restrictionsView"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <ImageButton
+                android:id="@+id/favButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/restrictionsView"
+                android:src="@drawable/star" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
