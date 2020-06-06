@@ -203,10 +203,11 @@
                 android:id="@+id/favButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/star"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/restrictionsView"
-                android:src="@drawable/star" />
+                app:layout_constraintTop_toBottomOf="@+id/restrictionsView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

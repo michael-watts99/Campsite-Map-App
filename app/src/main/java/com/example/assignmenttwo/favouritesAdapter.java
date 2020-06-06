@@ -23,7 +23,7 @@ public class favouritesAdapter extends RecyclerView.Adapter<favouritesAdapter.Vi
 
     private View favFrag;
 
-
+    //Constructor for the adapter
     public favouritesAdapter(ArrayList<com.example.assignmenttwo.favouritesData> data, Context context, View siteFrag, View favFrag)
     {
         this.c = context;
@@ -32,6 +32,7 @@ public class favouritesAdapter extends RecyclerView.Adapter<favouritesAdapter.Vi
         this.favFrag = favFrag;
     }
 
+    //Setting the viewholder for the recycler
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         public TextView nameText;
@@ -40,7 +41,7 @@ public class favouritesAdapter extends RecyclerView.Adapter<favouritesAdapter.Vi
         public ViewHolder(View itemView)
         {
             super(itemView);
-
+            //Setting the name and image
             nameText = itemView.findViewById(R.id.name);
             image = itemView.findViewById(R.id.siteImageRecycler);
 
@@ -58,7 +59,7 @@ public class favouritesAdapter extends RecyclerView.Adapter<favouritesAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position)
     {
-
+        //setting the data in the viewholder
         holder.image.setImageResource(data.get(position).getImage());
         holder.nameText.setText(data.get(position).getName());
 

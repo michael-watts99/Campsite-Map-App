@@ -26,7 +26,7 @@ public class siteFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
 
-
+        //Creating the view and setting the layout
         Resources res = getResources();
         images = res.obtainTypedArray(R.array.images);
         names = res.getStringArray(R.array.names);

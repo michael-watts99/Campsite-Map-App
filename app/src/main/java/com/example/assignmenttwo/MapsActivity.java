@@ -14,15 +14,18 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -44,6 +47,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 
@@ -81,7 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     //listarrays
     public ArrayList<String> namesList = new ArrayList<>();;
-    ArrayList<String> latitudeList = new ArrayList<>();
+    private ArrayList<String> latitudeList = new ArrayList<>();
     ArrayList<String> longitudeList = new ArrayList<>();
     ArrayList<TypedArray> imagesList= new ArrayList<>();
     ArrayList<String> siteInformationList = new ArrayList<>();
@@ -91,12 +95,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ArrayList<String> favs = new ArrayList<>();
     ArrayList<TypedArray> favsImage = new ArrayList<>();
 
+    //Data for savedInstance state
+
+    static final String FAVOURITES = "favourites";
+
+    SharedPreferences sharedPrefs;
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState)
+    {
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         Resources res = getResources();
+        if(savedInstanceState != null)
+        {
+            favs = savedInstanceState.getStringArrayList(FAVOURITES);
+        }
 
+
+        sharedPrefs = this.getSharedPreferences("com.example.assignmentTwo", Context.MODE_PRIVATE);
+
+        //Adding the favourites fragment
         FragmentTransaction fragmentTransaction = fragManager.beginTransaction();
         favouritesFragment frag = new favouritesFragment();
         fragmentTransaction.attach(frag);
@@ -104,6 +128,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fragmentTransaction.add(R.id.favFrag, frag, "FRAG");
         fragmentTransaction.commit();
 
+        //Setting the global variables (these are what is presented on the screen)
         names = res.getStringArray(R.array.names);
         latitude =  res.getStringArray(R.array.latitude);
         longitude = res.getStringArray(R.array.longitude);
@@ -119,13 +144,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         siteFrag = findViewById(R.id.siteFrag);
 
 
-
+        //Setting the fragments to be invisible
         favFrag.setVisibility(View.INVISIBLE);
         siteFrag.setVisibility(View.INVISIBLE);
 
 
 
-
+        //Adding the data from the database to usable arraylists.
         namesList.addAll(Arrays.asList(names));
 
 
@@ -144,13 +169,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         siteInformationList.addAll(Arrays.asList(siteInformation));
 
-//        siteFacilitiesList = new ArrayList<>();
+
         siteFacilitiesList.addAll(Arrays.asList(siteFacilities));
 
-//        siteAccessibilityList = new ArrayList<>();
         siteAccessibilityList.addAll(Arrays.asList(siteAccessibility));
 
-//        siteRestrictionsList = new ArrayList<>();
         siteRestrictionsList.addAll(Arrays.asList(siteRestrictions));
 
 
@@ -158,11 +181,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        //Setting location services client
         locationClient = LocationServices.getFusedLocationProviderClient(this);
+        //Requesting location permissions
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
-        //Setting the location services client
-//        locationClient = LocationServices.getFusedLocationProviderClient(this);
-        //Checking if the location services are enabled
+
+        //Checking if the location services are enabled before doing anything
         isLocationOn();
         //If the location services are on the app will
         if (locationOn && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -176,7 +200,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //Calling location callback method
             getLocationCallback();
         }
-
+        //Setting the onclick methods for the main navigation buttons
         mainButtons();
 
 
@@ -192,59 +216,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    private void mainButtons()
-    {
-        ImageButton favButton = findViewById(R.id.star);
-        favButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFavouritesButton();
-            }
-        });
 
-        ImageButton mainButton = findViewById(R.id.home);
-        mainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(favFrag.getVisibility() == View.VISIBLE || siteFrag.getVisibility() == View.VISIBLE)
-                {
-                    favFrag.setVisibility(View.INVISIBLE);
-                    siteFrag.setVisibility(View.INVISIBLE);
-                }
-                isLocationOn();
-
-                if (ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && locationOn) {
-
-                    //Gets the last known location and sets it to the global location variable.
-                    getLastLocation();
-
-
-                    //TODO Find out how to make the loading of the map smoother after giving permissions during runtime
-
-
-                    //Gets the latitude and longitude of the current location and then moves the camera there by panning over the map (To give it a smooth look)
-                    //Sets the map zoom to 15 so the location area is visible at a local level.
-
-                    if (currentLoc != null) {
-                        LatLng current = new LatLng(currentLoc.getLatitude(), currentLoc.getLongitude());
-                        CameraPosition currentLocationCameraPosition = new CameraPosition.Builder().target(current).zoom(15).build();
-                        CameraUpdate currentLocationUpdate = CameraUpdateFactory.newCameraPosition(currentLocationCameraPosition);
-                        mMap.animateCamera(currentLocationUpdate);
-                    }
-
-                }
-                else
-                {
-                    LatLng sydney = new LatLng(-33.8688,151.2093);
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                }
-
-
-            }
-        });
-
-
-    }
 
 
     /**
@@ -282,12 +254,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 locationUpdates();
                 getLastLocation();
                 if (currentLoc != null) {
+                    //if the app is able to get the location it will move the map to that location.
                     LatLng current = new LatLng(currentLoc.getLatitude(), currentLoc.getLongitude());
                     CameraPosition currentLocationCameraPosition = new CameraPosition.Builder().target(current).zoom(15).build();
                     CameraUpdate currentLocationUpdate = CameraUpdateFactory.newCameraPosition(currentLocationCameraPosition);
                     mMap.animateCamera(currentLocationUpdate);
 
-                    directions();
+
                 }
 
 
@@ -298,6 +271,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         {
             if(mMap != null)
             {
+                //If the map is unable to get location it will move the camera to Sydney
                 LatLng sydney = new LatLng(33.8688,151.2093);
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
             }
@@ -308,13 +282,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.setOnMyLocationClickListener(this);
 
-
+        //getting the onclick methods for the myLocationButton.
         getMyLocationButton();
 
 
     }
 
-
+    //Default location button methods.
     @Override
     public boolean onMyLocationButtonClick() {
         return false;
@@ -324,14 +298,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     //is called when the user clicks on the location dot.
     public void onMyLocationClick(@NonNull Location location) {
 
-        Toast.makeText(this, String.valueOf(location.getLatitude()), Toast.LENGTH_LONG).show();
+
     }
 
-
+    //getting the last known location
     public void getLastLocation() {
-//        currentLoc = locationClient.getLastLocation();
+        //Getting a location manager
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         Criteria crit = new Criteria();
+        //Checking if location services are on and the app has permissions
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             // here to request the missing permissions, and then overriding
@@ -341,12 +316,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        //Setting the location to a usable private global variable.
         String provider = locationManager.getBestProvider(crit, true);
         Location location = locationManager.getLastKnownLocation(provider);
         currentLoc = location;
 
     }
 
+    //Upadating the location in real time. This allows Latitude and Longitude to be printed to the screen.
     public void getLocationCallback() {
         //Creating the call back to get live location
         locCallback = new LocationCallback() {
@@ -361,7 +338,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 //Creating a loop to update the GUI everytime there is an update to location.
 
                 for (Location loc : locationRes.getLocations()) {
-                    //TODO Create logic AND UI for displaying the ongoing latitude and longitude to the user. Could a compass be pulled here?
+
                     TextView text = findViewById(R.id.latView);
                     text.setText("Lat: " + String.valueOf(loc.getLatitude()));
                     TextView longText = findViewById(R.id.longView);
@@ -390,9 +367,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 else if (!locationOn)
                 {
+                    //Requests for the user to turn the location on
                     turnLocationOn();
 
-                    //TODO GET THE APP TO WAIT FOR THIS TO FINISH BEFORE CARRYING ON
+
 
 
                 }
@@ -404,7 +382,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     getLastLocation();
 
 
-                    //TODO Find out how to make the loading of the map smoother after giving permissions during runtime
+
 
 
                     //Gets the latitude and longitude of the current location and then moves the camera there by panning over the map (To give it a smooth look)
@@ -425,10 +403,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
     @Override
+    //This method is called after the user returns from turning location services on
     protected void onResume() {
         super.onResume();
-
+        //Checks if the user enabled location services
         isLocationOn();
+        //If it is then it will reset the location UI
         if(locationOn && mMap != null && ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && siteFrag.getVisibility() != View.VISIBLE)
         {
             locationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -445,7 +425,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             locationUpdates();
 
 
-
+            //Moving the user to the current location if it is available
             if (currentLoc != null) {
                 LatLng current = new LatLng(currentLoc.getLatitude(), currentLoc.getLongitude());
                 CameraPosition currentLocationCameraPosition = new CameraPosition.Builder().target(current).zoom(15).build();
@@ -455,15 +435,76 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         else if(!locationOn)
         {
+            //If the location was not turned on then display rationale.
             Toast.makeText(this, "Without access to your location you will not be able to see where you are on the map or get directions.", Toast.LENGTH_LONG).show();
         }
-        else if(siteFrag.getVisibility() == View.VISIBLE)
+        //if the site frag or the favourites frag is opened the map won't move
+        else if(siteFrag.getVisibility() == View.VISIBLE || favFrag.getVisibility() == View.VISIBLE)
         {
             return;
         }
 
     }
 
+    //Method to set the onclicks for the main navigation buttons
+    private void mainButtons()
+    {
+        ImageButton favButton = findViewById(R.id.star);
+        favButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //getting the favourites button functionality
+                getFavouritesButton();
+            }
+        });
+
+        ImageButton mainButton = findViewById(R.id.home);
+        mainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Closing all fragments if they are open
+                if(favFrag.getVisibility() == View.VISIBLE || siteFrag.getVisibility() == View.VISIBLE)
+                {
+                    favFrag.setVisibility(View.INVISIBLE);
+                    siteFrag.setVisibility(View.INVISIBLE);
+                }
+                //Checking for location
+                isLocationOn();
+
+                //Moving to the last location
+                if (ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && locationOn) {
+
+                    //Gets the last known location and sets it to the global location variable.
+                    getLastLocation();
+
+
+
+
+
+                    //Gets the latitude and longitude of the current location and then moves the camera there by panning over the map (To give it a smooth look)
+                    //Sets the map zoom to 15 so the location area is visible at a local level.
+
+                    if (currentLoc != null) {
+                        LatLng current = new LatLng(currentLoc.getLatitude(), currentLoc.getLongitude());
+                        CameraPosition currentLocationCameraPosition = new CameraPosition.Builder().target(current).zoom(15).build();
+                        CameraUpdate currentLocationUpdate = CameraUpdateFactory.newCameraPosition(currentLocationCameraPosition);
+                        mMap.animateCamera(currentLocationUpdate);
+                    }
+
+                }
+                //if lcoation services are off then it will move to Sydney
+                else
+                {
+                    LatLng sydney = new LatLng(-33.8688,151.2093);
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                }
+
+
+            }
+        });
+
+
+    }
 
     //Method to handle the users response to the permissions request
     @Override
@@ -503,12 +544,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 else if(!locationOn)
                 {
+                    //if location is off it will ask for it to be turned on
                     turnLocationOn();
                 }
 
             }
             else
             {
+                //If permissions weren't enabled then the map will move to sydney.
                 Toast.makeText(this, "Without access to your location you will not be able to see where you are on the map or get directions.", Toast.LENGTH_LONG).show();
                 LatLng sydney = new LatLng(-34, 151);
                 //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
@@ -531,15 +574,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     //Setting a location update method
     private void locationUpdates()
     {
-
+        //Requesting location updates
         locationClient.requestLocationUpdates(locationRequest, locCallback, Looper.getMainLooper());
     }
 
+    //Method to check if location is turned on
     private void isLocationOn()
     {
+
         LocationManager manager;
         manager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-        if(manager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+        //Checking if gps or network location is enabled.
+        if(manager.isProviderEnabled(LocationManager.GPS_PROVIDER) || manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
         {
             locationOn = true;
 
@@ -570,23 +616,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }).create().show();
 
     }
-
+    //Method to add the markers to the page
     public void addMarkers()
     {
+        //Adding the markers using the information from the database
         for(int i = 0; i < namesList.size(); i++ )
         {
             LatLng location = new LatLng(Double.parseDouble(latitudeList.get(i)), Double.parseDouble(longitudeList.get(i)));
             mMap.addMarker(new MarkerOptions().position(location).title(namesList.get(i)).icon(BitmapDescriptorFactory.fromResource(R.drawable.campsite_icon)));
 
-
+            //When a marker is clicked the information in the site fragment will be set based on what marker was clicked
             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @SuppressLint("ResourceType")
                 @Override
                 public boolean onMarkerClick(final Marker marker) {
 
-
+                    //making the fragment visible
                     siteFrag.setVisibility(View.VISIBLE);
 
+                    //Setting each image and text view
                     ImageView image = siteFrag.findViewById(R.id.siteImage);
                     TextView siteInfo = siteFrag.findViewById(R.id.siteDescription);
                     TextView siteTitle = siteFrag.findViewById(R.id.campsiteTitle);
@@ -595,8 +643,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     TextView facilitiesInfo = siteFrag.findViewById(R.id.faciltiesInfo);
                     TextView accessibilityInfo = siteFrag.findViewById(R.id.accessibility);
                     TextView restrictionsInfo = siteFrag.findViewById(R.id.restrictionsInfo);
-
                     ImageButton star = siteFrag.findViewById(R.id.favButton);
+
+                    //Setting the directions line between the location and the marker
+                    directions(namesList.indexOf(marker.getTitle()));
+                    //Checking if the site is in the favourites list
                     if(favs.contains(marker.getTitle()))
                     {
                         star.setImageResource(R.drawable.star_filled);
@@ -605,21 +656,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     {
                         star.setImageResource(R.drawable.star);
                     }
+                    //getting the index of the data for this marker
                     int index = namesList.indexOf(marker.getTitle());
-                    //TODO REPLACE EACH INDIVIDUAL VIEW WITH A RECYCLERVIEW WITH CARDVIEW
+                    //Getting the campsite info
                     getCampsiteInfo(image, siteInfo, siteTitle, siteLat, siteLong, facilitiesInfo, accessibilityInfo, restrictionsInfo, index);
 
-
+                    //Setting the onclick for the add to favourites button
                     final ImageView favButton = siteFrag.findViewById(R.id.favButton);
                     favButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            //if it isn't already in favourites then add it and fill the star
                             if(!favs.contains(marker.getTitle()))
 
                             {
                                 addFavouriteButton(marker);
                                 favButton.setImageResource(R.drawable.star_filled);
                             }
+                            //if the site is already favourited then it will be removed from favourites
                             else if(favs.contains(marker.getTitle()))
                             {
                                 favButton.setImageResource(R.drawable.star);
@@ -639,10 +693,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    //Method to get and set all the campsite info
     @SuppressLint("ResourceType")
     public void getCampsiteInfo(ImageView image, TextView siteInfo, TextView siteTitle, TextView siteLat, TextView siteLong, TextView facilitiesInfo, TextView accessibilityInfo, TextView restrictionsInfo, int index)
     {
 
+        //Each if and else statement is to check of the information is available in the database. This keeps the app from reaching outside the array bounds.
+        //Sets each passed in View using the passed in index
         if(imagesList.size() - 1 >= index)
         {
 
@@ -713,6 +770,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
     }
+    //if the back button is pressed the fragments will be closed
     @Override
     public void onBackPressed()
     {
@@ -721,27 +779,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         favFrag.setVisibility(View.INVISIBLE);
     }
 
+    //Adding the site to the favourites array list
     public void addFavouriteButton(Marker marker)
     {
 
         favs.add(marker.getTitle());
         favsImage.add(imagesList.get(namesList.indexOf(marker.getTitle())));
-//        ArrayList<Integer> favsImage = new ArrayList<>();
-//        favsImage.add(imagesList.get(namesList.indexOf(marker.getTitle())));
-
-
 
     }
-
+    //getting the favourites and setting the recycler view
     public void getFavouritesButton()
     {
 
 
+        //Making the fragment visible
         favFrag.setVisibility(View.VISIBLE);
+        //Recreating fragment to check the favourites data for changes
         FragmentTransaction fragmentTransaction = fragManager.beginTransaction();
         favouritesFragment frag = new favouritesFragment();
         favouritesFragment fragment = (favouritesFragment) getSupportFragmentManager().findFragmentById(R.id.favFrag);
         favouritesAdapter favAdapter = new favouritesAdapter(frag.data, getBaseContext(), siteFrag, favFrag);
+        //Setting the data for each entry in the favs arraylist
         for(int i = 0; i < favs.size(); i++)
         {
 
@@ -757,6 +815,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         }
+        //if the array is empty then remove all data
         if(favs.isEmpty())
         {
 //                favouritesFragment fragment = (favouritesFragment) getSupportFragmentManager().findFragmentById(R.id.favFrag);
@@ -779,14 +838,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-
-    public void directions()
+    //Method to create the line between two points
+    public void directions(int index)
     {
         LatLng current = new LatLng(currentLoc.getLatitude(), currentLoc.getLongitude());
-        LatLng destination = new LatLng(Double.parseDouble(latitudeList.get(0)), Double.parseDouble(longitudeList.get(0)));
+        LatLng destination = new LatLng(Double.parseDouble(latitudeList.get(index)), Double.parseDouble(longitudeList.get(index)));
 
-//        Polyline dirLine = new Polyline();
+
         mMap.addPolyline(new PolylineOptions().add(current, destination));
+
+
+
 
 
 

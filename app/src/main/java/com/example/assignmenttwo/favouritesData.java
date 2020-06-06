@@ -4,7 +4,8 @@ import android.content.res.TypedArray;
 import android.util.TypedValue;
 
 import java.lang.reflect.Type;
-
+//Favourites data class
+//Gets and sets the data
 public class favouritesData
 {
     private int id;

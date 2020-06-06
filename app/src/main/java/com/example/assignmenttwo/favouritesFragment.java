@@ -30,17 +30,18 @@ public class favouritesFragment extends Fragment
 
         super.onCreateView(favInflater, container, savedInstanceState);
         View root = favInflater.inflate(R.layout.favourites_fragment, container, false);
-
+        //Setting the recycler
         favouriteRecycler = root.findViewById(R.id.favouritesRecycler);
-
+        //Setting the adapter
         favouritesAdapter = new favouritesAdapter(data, getActivity().getBaseContext(), mapsActivity.siteFrag, mapsActivity.favFrag);
 
         favouriteRecycler.setAdapter(favouritesAdapter);
-
+        //Creating and setting the layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 
         favouriteRecycler.setLayoutManager(layoutManager);
 
+        //Setting the data in the favourites data
         for(int i = 0; i < mapsActivity.favs.size(); i++)
         {
             String name = mapsActivity.favs.get(i);

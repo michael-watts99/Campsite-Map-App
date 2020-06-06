@@ -10,33 +10,24 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a60f9e10-2e64-46d6-a98d-aef9d9bf5fea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-hdpi/Component 5 – 5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-ldpi/Component 5 – 5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-mdpi/Component 5 – 5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-xhdpi/Component 5 – 5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Designs/drawable-xxhdpi/Component 5 – 5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/favouritesAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/favouritesData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/favouritesFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/star_filled.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/favourites_fragment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/favourites_recycler_layout.xml" afterDir="false" />
+    <list default="true" id="a60f9e10-2e64-46d6-a98d-aef9d9bf5fea" name="Default Changelist" comment="Commit for any changes since last commit for work on 06/06/20&#10;- Completing favourites fragment&#10;- Finalising main button functions&#10;- Adding button to add a site as a favourite.">
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/MapsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/MapsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/favouritesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/favouritesAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/favouritesData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/favouritesData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/favouritesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/favouritesFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/siteFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/siteFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/favourites_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/favourites_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/favourites_recycler_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/favourites_recycler_layout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/site_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/site_fragment.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -85,7 +76,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Assessment one/newsApp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Assessment one/studyTimer" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
@@ -229,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591293339966</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Commit for any changes since last commit for work on 05/06/20&#10;- Completing favourites fragment&#10;- Finalising main button functions&#10;- Adding button to add a site as a favourite.">
+      <created>1591392582365</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1591392582365</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -266,24 +264,25 @@
     <MESSAGE value="Commit for any changes since last commit for work on 02/06/20&#10;- Created for loop to create markers from the database &#10;- Started XML database&#10;- Added fragment for the campsite information&#10;- Removed redundant test button" />
     <MESSAGE value="Commit for any changes since last commit for work on 03/06/20&#10;- Continued developing the database&#10;- Created function to fill fragment with campsite data based on which marker has been selected&#10;- Added new icon for campsite markers&#10;- Added second campsite image" />
     <MESSAGE value="Commit for any changes since last commit for work on 04/06/20&#10;- Completed database&#10;- Researched ways to provide directions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit for any changes since last commit for work on 04/06/20&#10;- Completed database&#10;- Researched ways to provide directions." />
+    <MESSAGE value="Commit for any changes since last commit for work on 05/06/20&#10;- Completing favourites fragment&#10;- Finalising main button functions&#10;- Adding button to add a site as a favourite." />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit for any changes since last commit for work on 05/06/20&#10;- Completing favourites fragment&#10;- Finalising main button functions&#10;- Adding button to add a site as a favourite." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/MapsActivity.java</url>
-          <line>645</line>
+          <line>702</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/MapsActivity.java</url>
-          <line>739</line>
+          <line>795</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/favouritesFragment.java</url>
-          <line>45</line>
+          <line>46</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -298,17 +297,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/MapsActivity.java</url>
-          <line>726</line>
+          <line>785</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/favouritesAdapter.java</url>
-          <line>61</line>
+          <line>62</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/assignmenttwo/favouritesAdapter.java</url>
-          <line>64</line>
+          <line>65</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
