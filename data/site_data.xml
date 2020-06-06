@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="images">
+        <item>
+            @drawable/campsite
+        </item>
+        <item>
+            @drawable/big_hill
+        </item>
+<!--        TODO COMPLETE THE DATABASE FOR THESE CAMPSITES THEN MOVE TO DIRECTIONS. -->
+        <item>
+            @drawable/hammond_road
+        </item>
+        <item>
+            @drawable/sharps_campground
+        </item>
+
+    </array>
+
+    <string-array name="information">
+        <item name="aire crossing">
+            This campsite is located in the Great Otway national park. It is a short walk away from a flowing river and within driving distance of many waterfalls.
+        </item>
+        <item name="big hill">
+            This campsite is located near the town of Lorne. It is a free campsite with no running water. There are 12 campsites allocated on a first in best dressed system. The campsite is open from the 1st of November to the 30th of May.
+        </item>
+        <item name="hammond road">
+            This campsite is located in the Great Otway National Park between Lorne and Torquay. This is a free campground with 20 sites, the first four are suitable for caravans and campervans.
+        </item>
+        <item name="sharps">
+            This campsite is located near Lorne. It is a free campsite with no running water -SUPPLY YOUR OWN-. The campsite is a short drive from Sheoak picnic area where there are flush toilets available. This is a free campsite with 6 campsites, 3 of which are tents only. Beyond this campsite is 4WD access only.
+        </item>
+    </string-array>
+
+    <string-array name="facilities">
+        <item name="Aire crossing">
+            -Toilet\n-Carpark
+
+
+        </item>
+        <item name="Big hill">
+            -Toilet\n-Carpark\n-Shared Fireplace
+        </item>
+        <item name="Hammond Road">
+            -Toilet\n-Carpark\n-Shared Fireplace
+        </item>
+        <item name="sharps">
+            -Toilets at near by picnic area
+        </item>
+
+
+
+    </string-array>
+    <string-array name="accessibility">
+        <item name="Aire crossing">
+            -Car\n-Off Road Wheelchair\n-Small camper/Caravan\n-4WD\n-Tent or vehicle camping
+        </item>
+        <item name="Big hill">
+            -Car\n-All Terrain Wheelchair\n-Camper vans/Caravans\n-4WD\n-Tent or vehicle camping
+        </item>
+        <item name="hammond road">
+            -Car\n-All Terrain Wheelchair\n-Camper vans/Caravans (sites 1 - 4)\n-4WD\n-Tent or vehicle camping
+        </item>
+        <item name="sharps">
+            -4WD\n-Small Caravans\n-Tent or vehicle camping.
+        </item>
+    </string-array>
+
+    <string-array name="restrictions">
+        <item name="aire crossing">
+            -No pets\n-No generators\n-No firearms\n-No fires\n-No running water
+        </item>
+        <item name="big hill">
+            -No pets\n-No generators\n-No firearms\n-Fires only in supplied fireplaces\n-Seasonally closed\n-Must supply own firewood\n-No running water
+        </item>
+        <item name="hammond road">
+            -No pets\n-Fires only in supplied fireplaces\n-Must supply own firewood\n-No running water
+        </item>
+        <item name="sharps">
+            -No pets\n-No fires\n-No running water
+        </item>
+    </string-array>
+</resources>

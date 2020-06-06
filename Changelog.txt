@@ -1,0 +1,41 @@
+13/05/20
+-Created inital project files and created repository.
+-Committed files from within Android
+14/05/20
+-Design created in Adobe XD
+17/05/20
+-Updates to Design
+----------END OF WEEK-------------
+Progressing well in creating designs, these can easily be recreated in Android layouts
+-----------------------------------
+23/05/20
+-Added location tracking
+-Added myLocationButton
+-Added main toolbar buttons
+-Added menu button
+24/05/20
+-Added request for location tracking
+----------END OF WEEK-------------
+Core map functionality is progressing well, however I have faced many challenges with getting and tracking location
+-----------------------------------
+01/06/20
+-Added location settings checking
+-Added location permissions request
+-Added functions for having location denied
+02/06/20
+-XML database
+-Added campsite markers to the app
+-Added Fragment for campsite information
+04/06/20
+-Created function to fill site fragment data
+-Added new icon for markers
+05/06/20
+-Added favourites fragment
+-Added button to add site to favourites
+06/06/20
+-Finalised all functionality.
+----------END OF WEEK-------------
+Main functionality is completed, but some of the minor functionality remains incomplete. I faced more challenges than I had initially thought I would, and troubleshooting took longer.
+This Project was overall a huge learning curve and challenge.
+-----------------------------------
+
