@@ -1,4 +1,4 @@
-# Campsite-Map-App
+# Campsite-Map-App-Android
 Project Overview:
 
 My app is a mapping app that maps out campsites and reststops and gives information on those campsites and reststops
